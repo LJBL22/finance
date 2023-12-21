@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="section">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in owned_stocks %}
+                    <tr>
+                        <td>{{ stock.Symbol }}</td>
+                        <td>{{ stock.Name }}</td>
+                        <td>{{ stock.Amount }}</td>
+                        <td>{{ stock.Price | usd }}</td>
+                        <td>{{ (stock.Amount * stock.Price) | usd }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <th>Cash</th>
+                    <td>{{ users_cash | usd }}</td>
+                </tr>
+                <tr>
+                    <th>TOTAL</th>
+                    <td>{{ total | usd }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
